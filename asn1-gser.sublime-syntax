@@ -1,0 +1,65 @@
+%YAML 1.2
+---
+# See http://www.sublimetext.com/docs/3/syntax.html
+name: ASN.1 GSER
+file_extensions:
+  - my
+scope: source.asn1.gser
+
+contexts:
+  # The prototype context is prepended to all contexts but those setting
+  # meta_include_prototype: false.
+  prototype:
+    - include: comments
+
+  main:
+    # The main context is the initial starting point of our syntax.
+    # Include other contexts from here (or specify them directly).
+    - include: keywords
+    - include: numbers
+    - include: strings
+    - include: punctuation
+
+  keywords:
+    # Keywords are if, else for and while.
+    # Note that blackslashes don't need to be escaped within single quoted
+    # strings in YAML. When using single quoted strings, only single quotes
+    # need to be escaped: this is done by using two single quotes next to each
+    # other.
+    - match: '\b(IMPORTS|OBJECT-TYPE|FROM|OBJECT IDENTIFIER|SYNTAX|ACCESS|STATUS|DESCRIPTION|INDEX|DEFVAL|SEQUENCE OF|SEQUENCE)\b'
+      scope: keyword.control.gser
+
+  # TODO: This doesn't appear to work?
+  punctuation:
+    - match: '::=|[\{\}\(\)]'
+      scope: punctuation.definition.generic.gser
+
+  numbers:
+    - match: '\b(-)?[0-9.]+\b'
+      scope: constant.numeric.gser
+
+  strings:
+    # Strings begin and end with quotes, and use backslashes as an escape
+    # character.
+    - match: '"'
+      scope: punctuation.definition.string.begin.gser
+      push: inside_string
+
+  inside_string:
+    - meta_include_prototype: false
+    - meta_scope: string.quoted.double.gser
+    - match: '\.'
+      scope: constant.character.escape.gser
+    - match: '"'
+      scope: punctuation.definition.string.end.gser
+      pop: true
+
+  comments:
+    # Comments begin with a '//' and finish at the end of the line.
+    - match: '--'
+      scope: punctuation.definition.comment.gser
+      push:
+        # This is an anonymous context push for brevity.
+        - meta_scope: comment.line.double-slash.gser
+        - match: $\n?
+          pop: true
