@@ -2,8 +2,7 @@
 ---
 # See http://www.sublimetext.com/docs/3/syntax.html
 name: ASN.1 GSER
-file_extensions:
-  - my
+file_extensions: [ asn, asn1, my ]
 scope: source.asn1.gser
 
 contexts:
