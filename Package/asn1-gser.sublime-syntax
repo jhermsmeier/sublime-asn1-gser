@@ -31,7 +31,7 @@ contexts:
       scope: keyword.control.gser
     # Types
     - match: '\b(BIT STRING|BOOLEAN|ENUMERATED|INTEGER|NULL|OBJECT IDENTIFIER|RELATIVE-OID|OCTET STRING|CHOICE|SEQUENCE OF|SET OF|SEQUENCE|SET|CHARACTER STRING|EMBEDDED PDV|EXTERNAL|INSTANCE OF|REAL)\b'
-      scope: keyword.control.gser
+      scope: storage.type.gser
 
   # TODO: This doesn't appear to work?
   punctuation:
