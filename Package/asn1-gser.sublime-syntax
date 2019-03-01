@@ -39,11 +39,16 @@ contexts:
       scope: punctuation.definition.generic.asn1.gser
 
   numbers:
+    # TODO: Fix partial integer-in-word highlighting (i.e. in `FROM RFC-1212;`)
     - match: '\b(-)?[0-9.]+\b'
       scope: constant.numeric.asn1.gser
     - match: '''[0-9A-F]+''H'
       scope: constant.numeric.asn1.gser
     - match: '''[01]+''B'
+      scope: constant.numeric.asn1.gser
+    - match: '\b(PLUS-INFINITY|MINUS-INFINITY)\b'
+      scope: constant.numeric.asn1.gser
+    - match: '\b([0-9]+(\.[0-9]+)?(E(-)?[1-9][0-9]+)?)\b'
       scope: constant.numeric.asn1.gser
 
   strings:
