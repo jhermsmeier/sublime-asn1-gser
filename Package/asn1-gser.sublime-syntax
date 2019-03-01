@@ -44,10 +44,10 @@ contexts:
     - match: '\b(-)?[0-9.]+\b'
       scope: constant.numeric.asn1.gser
     # Hexadecimal bit string
-    - match: '''[0-9A-F]+''H'
+    - match: '''[0-9A-F]+''[Hh]'
       scope: constant.numeric.asn1.gser
     # Binary bit string
-    - match: '''[01]+''B'
+    - match: '''[01]+''[Bb]'
       scope: constant.numeric.asn1.gser
     # Language constants
     - match: '\b(PLUS-INFINITY|MINUS-INFINITY|NULL)\b'
