@@ -5,6 +5,9 @@ name: ASN.1 GSER
 file_extensions: [ asn, asn1, my ]
 scope: source.asn1.gser
 
+variables:
+  identifier: '[a-z][a-zA-Z0-9]*(\-[a-zA-Z0-9])*'
+
 contexts:
   # The prototype context is prepended to all contexts but those setting
   # meta_include_prototype: false.
@@ -56,7 +59,7 @@ contexts:
     - match: '\b([0-9]+(\.[0-9]+)?(E(-)?[1-9][0-9]+)?)\b'
       scope: constant.numeric.asn1.gser
     # OIDs
-    - match: '{(\s(\d+|([a-z][a-zA-Z0-9]*(\-[a-zA-Z0-9])*)))+\s}'
+    - match: '{(\s(\d+|({{identifier}})))+\s}'
       scope: constant.numeric.asn1.gser
 
   strings:
