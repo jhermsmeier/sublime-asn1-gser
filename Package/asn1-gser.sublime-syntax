@@ -25,7 +25,12 @@ contexts:
     # strings in YAML. When using single quoted strings, only single quotes
     # need to be escaped: this is done by using two single quotes next to each
     # other.
-    - match: '\b(IMPORTS|OBJECT-TYPE|FROM|OBJECT IDENTIFIER|SYNTAX|ACCESS|STATUS|DESCRIPTION|INDEX|DEFVAL|SEQUENCE OF|SEQUENCE)\b'
+
+    # Keywords
+    - match: '\b(IMPORTS|OBJECT-TYPE|FROM|SYNTAX|ACCESS|STATUS|DESCRIPTION|INDEX|DEFVAL)\b'
+      scope: keyword.control.gser
+    # Types
+    - match: '\b(BIT STRING|BOOLEAN|ENUMERATED|INTEGER|NULL|OBJECT IDENTIFIER|RELATIVE-OID|OCTET STRING|CHOICE|SEQUENCE OF|SET OF|SEQUENCE|SET|CHARACTER STRING|EMBEDDED PDV|EXTERNAL|INSTANCE OF|REAL)\b'
       scope: keyword.control.gser
 
   # TODO: This doesn't appear to work?
@@ -35,6 +40,10 @@ contexts:
 
   numbers:
     - match: '\b(-)?[0-9.]+\b'
+      scope: constant.numeric.asn1.gser
+    - match: '''[0-9A-F]+''H'
+      scope: constant.numeric.asn1.gser
+    - match: '''[01]+''B'
       scope: constant.numeric.asn1.gser
 
   strings:
@@ -54,7 +63,7 @@ contexts:
       pop: true
 
   comments:
-    # Comments begin with a '//' and finish at the end of the line.
+    # Comments begin with a '--' and finish at the end of the line.
     - match: '--'
       scope: punctuation.definition.comment.asn1.gser
       push:
